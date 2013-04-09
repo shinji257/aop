@@ -13,7 +13,7 @@ public class OpmeExecutor implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("opme")) {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
-                if (player.hasPermission("aop.use")) {
+                if (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give")) {
                     player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp() || p.hasPermission("aop.notify")){
