@@ -28,7 +28,7 @@ Commands:
 - /deopme (Deops the calling user -- Ops only)
 
 Todo:
-123456789012345678901234567890123456789012345678901234567890123456789012
+
 * Add permission node so that non-ops can get alerts from the plugin.
   Currently alerts are only for ops.
 * Rename it aOP (remove confusion vs microop/uop) (DONE)
