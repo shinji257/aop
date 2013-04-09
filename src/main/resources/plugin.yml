@@ -5,7 +5,6 @@ version: 1
 commands:
     opme:
         description: Allows players to give OP status to themself.
-        permission: aop.use
         usage: |
             /<command> - enable OP status on yourself.
     deopme:
