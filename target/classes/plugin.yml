@@ -1,11 +1,11 @@
-name: MicroOP
-main: org.dropdev.microop.MicroOP
-version: 5
+name: aOP
+main: org.shinji257.aop.aOP
+version: 1
 
 commands:
     opme:
         description: Allows players to give OP status to themself.
-        permission: microop.give
+        permission: aop.use
         usage: |
             /<command> - enable OP status on yourself.
     deopme:

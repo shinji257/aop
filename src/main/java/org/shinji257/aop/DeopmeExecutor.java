@@ -15,16 +15,18 @@ public class DeopmeExecutor implements CommandExecutor {
                 final Player player = (Player) sender;
                 if (player.isOp()) {
                     player.setOp(false);
-                    player.sendMessage("[microOP] " + ChatColor.YELLOW + "You are no longer op!");
+                    player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are no longer op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp()){
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /deopme");
                         }
                     }
-		    MicroOP.log.info(player.getName() + " has used /deopme");
+		    aOP.log.info(player.getName() + " has used /deopme");
+                } else {
+                    sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
                 }
             } else {
-                sender.sendMessage("[microOP] Only Players can execute this command");
+                sender.sendMessage("[aOP] Only Players can execute this command");
             }
             return true;
         }
