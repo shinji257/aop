@@ -17,7 +17,7 @@ public class DeopmeExecutor implements CommandExecutor {
                     player.setOp(false);
                     player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are no longer op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(p.isOp()){
+                        if(p.isOp() || p.hasPermission("aop.notify")){
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /deopme");
                         }
                     }
@@ -25,7 +25,7 @@ public class DeopmeExecutor implements CommandExecutor {
                 } else {
                     sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(p.isOp()){
+                        if(p.isOp() || p.hasPermission("aop.notify")){
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /deopme");
                         }
                     }

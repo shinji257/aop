@@ -22,6 +22,7 @@ Functions:
 
 Permissions
 - aop.use (Allow usage of /opme command)
+- aop.notify (Get notified when someone uses op,deop,ect)
 
 Commands:
 - /opme (Ops the calling user -- Currently permissions only)
@@ -30,7 +31,7 @@ Commands:
 Todo:
 
 * Add permission node so that non-ops can get alerts from the plugin.
-  Currently alerts are only for ops.
+  Currently alerts are only for ops. (DONE -- add aop.notify)
 * Rename it aOP (remove confusion vs microop/uop) (DONE)
 * Add (optional) trap to opme command for those without permission --
   kill on first usage, kick on second
