@@ -13,23 +13,23 @@ public class OpmeExecutor implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("opme")) {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
-                if (!player.hasPermission("aop.use")) {
-                    sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
-                    for(Player p : Bukkit.getOnlinePlayers()){
-                        if(p.isOp()){
-                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
-                        }
-                    }
-                    aOP.log.info(player.getName() + " has used /opme (denied)");
-                } else {
+                if (player.hasPermission("aop.use")) {
                     player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp()){
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
                         }
                     }
-                    aOP.log.info(player.getName() + " has used /opme (allowed)");
+		    aOP.log.info(player.getName() + " has used /opme (allowed)");
                     player.setOp(true);
+                } else {
+                    sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    for(Player p : Bukkit.getOnlinePlayers()){
+                        if(p.isOp()){
+                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
+                        }
+                    }
+       		    aOP.log.info(player.getName() + " has used /opme (denied)");
                 }
             } else {
                 sender.sendMessage("[aOP] Only Players can execute this command");
@@ -39,4 +39,3 @@ public class OpmeExecutor implements CommandExecutor {
         return false;
     }
 }
-
