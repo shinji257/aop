@@ -1,0 +1,14 @@
+name: MicroOP
+main: org.dropdev.microop.MicroOP
+version: 5
+
+commands:
+    opme:
+        description: Allows players to give OP status to themself.
+        permission: microop.give
+        usage: |
+            /<command> - enable OP status on yourself.
+    deopme:
+        description: Allows players to remove OP status from themself.
+        usage: |
+            /<command> - disable OP status on yourself.
