@@ -61,7 +61,7 @@ public class aOP extends JavaPlugin {
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /" + cmd);
                         }
                     }
-		    aOP.log.info(player.getName() + " has used /" + cmd);
+		    aOP.log.info(player.getName() + " has used /" + cmd + " (denied)");
         	}
         }
     }

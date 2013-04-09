@@ -21,9 +21,15 @@ public class DeopmeExecutor implements CommandExecutor {
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /deopme");
                         }
                     }
-		    aOP.log.info(player.getName() + " has used /deopme");
+		    aOP.log.info(player.getName() + " has used /deopme (allowed)");
                 } else {
                     sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    for(Player p : Bukkit.getOnlinePlayers()){
+                        if(p.isOp()){
+                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /deopme");
+           		    aOP.log.info(player.getName() + " has used /deopme (denied)");
+                        }
+                    }
                 }
             } else {
                 sender.sendMessage("[aOP] Only Players can execute this command");

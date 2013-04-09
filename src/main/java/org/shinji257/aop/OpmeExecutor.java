@@ -20,10 +20,16 @@ public class OpmeExecutor implements CommandExecutor {
                             p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
                         }
                     }
-		    aOP.log.info(player.getName() + " has used /opme");
+		    aOP.log.info(player.getName() + " has used /opme (allowed)");
                     player.setOp(true);
                 } else {
                     sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    for(Player p : Bukkit.getOnlinePlayers()){
+                        if(p.isOp()){
+                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
+         		    aOP.log.info(player.getName() + " has used /opme (denied)");
+                        }
+                    }
                 }
             } else {
                 sender.sendMessage("[aOP] Only Players can execute this command");
