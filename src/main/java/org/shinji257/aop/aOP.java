@@ -73,5 +73,8 @@ public class aOP extends JavaPlugin {
         aOP.log.info(this.getDescription().getName() + " has been enabled.");
         // register events
         getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
+        // load configuration
+//        getConfig().options().copyDefaults(true);
+//        saveConfig();
     }
 }

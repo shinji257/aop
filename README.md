@@ -41,7 +41,10 @@ Todo:
 * Add option to toggle if op/deop should be blocked in game or not
 * Possible rename of the current opme permission node (again) (DONE)
 * Add/test node possibility to use bukkit op node as alternative...
-  Basically allow either or.
+  Basically allow either or. (DONE)
+* Add/test additional command blocks... Allowed via perm node only.
+  Can be disabled via config (when implemented)
+* Remove herobrine.
 
 Credits:
 
