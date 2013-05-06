@@ -58,7 +58,7 @@ public class aOP extends JavaPlugin {
 		    event.getPlayer().sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp() || p.hasPermission("aop.notify")){
-                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /" + cmd);
+                            p.sendMessage(ChatColor.GRAY + player.getDisplayName() + " has used /" + cmd);
                         }
                     }
 		    aOP.log.info(player.getName() + " has used /" + cmd + " (denied)");
