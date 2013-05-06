@@ -36,10 +36,6 @@ public class aOP extends JavaPlugin {
 
         @EventHandler(priority=EventPriority.MONITOR)
         public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
-        	// OP only version
-        	//Player player = event.getPlayer();
-        	//if (player != null && player.isOp()) return;
-
         	String[] split = event.getMessage().split(" ");
         	if (split.length < 1) return;
 
@@ -52,13 +48,19 @@ public class aOP extends JavaPlugin {
                 Disabled.add("deop");
                 Disabled.add("op");
 
+                // Getting the display string for below...
+                final Player player = event.getPlayer();
+                String P = player.getName();
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName())))) {
+                    P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
+                }
+
         	if (Collections.binarySearch(Disabled, cmd) >= 0) {
-                    final Player player = event.getPlayer();
         	    event.setCancelled(true);
 		    event.getPlayer().sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp() || p.hasPermission("aop.notify")){
-                            p.sendMessage(ChatColor.GRAY + player.getDisplayName() + " has used /" + cmd);
+                            p.sendMessage(ChatColor.GRAY + P + " has used /" + cmd);
                         }
                     }
 		    aOP.log.info(player.getName() + " has used /" + cmd + " (denied)");

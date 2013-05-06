@@ -43,6 +43,7 @@ Todo:
   Basically allow either or. (DONE)
 * Add/test additional command blocks... Allowed via perm node only.
   Can be disabled via config (when implemented)
+* Add option to toggle if nick is shown or not... (config)
 * Remove herobrine.
 
 Credits:

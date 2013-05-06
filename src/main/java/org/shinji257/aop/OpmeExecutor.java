@@ -13,11 +13,15 @@ public class OpmeExecutor implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("opme")) {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
+                String P = player.getName();
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName())))) {
+                    P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
+                }
                 if (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give")) {
                     player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp() || p.hasPermission("aop.notify")){
-                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
+                            p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
 		    aOP.log.info(player.getName() + " has used /opme (allowed)");
@@ -26,7 +30,7 @@ public class OpmeExecutor implements CommandExecutor {
                     sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if(p.isOp() || p.hasPermission("aop.notify")){
-                            p.sendMessage(ChatColor.GRAY + player.getName() + " has used /opme");
+                            p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
        		    aOP.log.info(player.getName() + " has used /opme (denied)");
