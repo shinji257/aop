@@ -1,6 +1,6 @@
 name: aOP
 main: org.shinji257.aop.aOP
-version: 1
+version: 2
 
 commands:
     opme:
