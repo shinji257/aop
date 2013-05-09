@@ -8,14 +8,19 @@ import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 
 public class DeopmeExecutor implements CommandExecutor {
+    private aOP plugin;
+
+    public DeopmeExecutor(aOP plugin) {
+        this.plugin = plugin;
+    }
+
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-
         if (command.getName().equalsIgnoreCase("deopme")) {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
                 String P = player.getName();
-                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName())))) {
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick")) {
                     P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 }
                 if (player.isOp()) {

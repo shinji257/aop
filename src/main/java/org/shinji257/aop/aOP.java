@@ -16,6 +16,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Bukkit;
 
+// Needed for config stuff
+
 public class aOP extends JavaPlugin {
     protected final static Logger log = Logger.getLogger("Minecraft");
 
@@ -24,9 +26,24 @@ public class aOP extends JavaPlugin {
         aOP.log.info(this.getDescription().getName() + " has been disabled.");
     }
 
+    @Override
+    public void onEnable() {
+        getCommand("opme").setExecutor(new OpmeExecutor(this));
+        getCommand("deopme").setExecutor(new DeopmeExecutor(this));
+        aOP.log.info(this.getDescription().getName() + " has been enabled.");
+        // register events
+        getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
+        // create default config...
+        saveDefaultConfig();
+        // load values into memory
+        //Boolean opblock = getConfig().getBoolean("opblock");
+        //Boolean shownick = getConfig().getBoolean("shownick");
+        //Boolean dropoponleave = getConfig().getBoolean("dropoponleave");
+    }
+
     // For handling chat events -- block op and deop commands
     public class CommandPreprocessListener implements Listener {
-        private final aOP plugin;
+        public aOP plugin;
 
         public CommandPreprocessListener(aOP instance) {
             plugin = instance;
@@ -51,8 +68,8 @@ public class aOP extends JavaPlugin {
                 // Getting the display string for below...
                 final Player player = event.getPlayer();
                 String P = player.getName();
-                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName())))) {
-                    P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && getConfig().getBoolean("shownick")) {
+                   P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 }
 
         	if (Collections.binarySearch(Disabled, cmd) >= 0) {
@@ -66,17 +83,5 @@ public class aOP extends JavaPlugin {
 		    aOP.log.info(player.getName() + " has used /" + cmd + " (denied)");
         	}
         }
-    }
-
-    @Override
-    public void onEnable() {
-        this.getCommand("opme").setExecutor(new OpmeExecutor());
-        this.getCommand("deopme").setExecutor(new DeopmeExecutor());
-        aOP.log.info(this.getDescription().getName() + " has been enabled.");
-        // register events
-        getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
-        // load configuration
-//        getConfig().options().copyDefaults(true);
-//        saveConfig();
     }
 }

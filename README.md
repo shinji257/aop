@@ -30,28 +30,18 @@ Commands:
 
 Todo:
 
-* Add permission node so that non-ops can get alerts from the plugin.
-  Currently alerts are only for ops. (DONE -- add aop.notify)
-* Rename it aOP (remove confusion vs microop/uop) (DONE)
-* Add (optional) trap to opme command for those without permission --
-  kill on first usage, kick on second
-* Add config file -- opme trap disable/enable
+* Add (optional) trap to opme command for those without permission --  kill on first usage, kick on second (config)
+* Add config file (Target 2.0) (DONE)
 * Add option to config file for possible silence on command denial
-* Add option to toggle if op/deop should be blocked in game or not
-* Possible rename of the current opme permission node (again) (DONE)
-* Add/test node possibility to use bukkit op node as alternative...
-  Basically allow either or. (DONE)
-* Add/test additional command blocks... Allowed via perm node only.
-  Can be disabled via config (when implemented)
-* Add option to toggle if nick is shown or not... (config)
-* Remove herobrine.
+* Add option to toggle if op/deop should be blocked in game or not (Target 2.0)
+* Add/test additional command blocks... Allowed via perm node only.  Can be disabled via config (when implemented)
+* Add option to toggle if nick is shown or not... (config) (Target 2.0) (DONE)
+* Add option to disable op on disconnect (config) + bypass node (prob aop.bypass.opdrop) (Target 2.0)
+* Remove herobrine. (Target ∞)
 
 Credits:
 
-* alexanderpas @ BukkitDev for making microOP/µOP.  Without it this
-  plugin would not be possible
-* Plague @ Bukkit Forums for making PlgDisableCmd.  Without it this
-  plugin would not be possible.
+* alexanderpas @ BukkitDev for making microOP/µOP.  Without it this plugin would not be possible
+* Plague @ Bukkit Forums for making PlgDisableCmd.  Without it this plugin would not be possible.
 
-For both plugins they are already open source so that's why I'm
-posting source for this plugin.
+For both plugins they are already open source so that's why I'm posting source for this plugin.
