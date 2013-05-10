@@ -17,7 +17,7 @@ permissions:
         description: Gives access to use /opme
         default: op
     aop.notify:
-        descriotion: Gives ability to notify when a monitored command is used
+        description: Gives ability to recieve notification when a monitored command is used
         default: false
     aop.bypass.opdrop:
         description: Bypass the automatic op drop on quit
