@@ -16,7 +16,8 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Bukkit;
 
-// Needed for config stuff
+// Player Event handlers...
+import org.bukkit.event.player.PlayerQuitEvent;
 
 public class aOP extends JavaPlugin {
     protected final static Logger log = Logger.getLogger("Minecraft");
@@ -36,7 +37,28 @@ public class aOP extends JavaPlugin {
         if (getConfig().getBoolean("opblock",true)) {
             getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
         }
+        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         aOP.log.info(this.getDescription().getName() + " has been enabled.");
+    }
+
+    public class PlayerListener implements Listener {
+        public aOP plugin;
+
+        public PlayerListener(aOP instance) {
+            plugin = instance;
+        }
+
+        @EventHandler(priority = EventPriority.MONITOR)
+        public void onPlayerQuit(final PlayerQuitEvent event) {
+            final Player player = event.getPlayer();
+            if ((player.isOp() & getConfig().getBoolean("opdrop",true)) && ( ! player.hasPermission("aop.bypass.opdrop"))) {
+//            if (player.isOp() & getConfig().getBoolean("opdrop",true)) {
+//                if ( ! player.hasPermission("aop.bypass.opdrop")) {
+                    player.setOp(false);
+                    aOP.log.info("Dropped op status for " + player.getName());
+//                }
+            }
+        }
     }
 
     // For handling chat events -- block op and deop commands
