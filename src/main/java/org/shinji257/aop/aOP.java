@@ -35,7 +35,7 @@ public class aOP extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
         // create default config...
         saveDefaultConfig();
-        // load values into memory
+        // ensure existing config contains all relevant vars... set to default if non-exist
         //Boolean opblock = getConfig().getBoolean("opblock");
         //Boolean shownick = getConfig().getBoolean("shownick");
         //Boolean dropoponleave = getConfig().getBoolean("dropoponleave");
@@ -68,15 +68,17 @@ public class aOP extends JavaPlugin {
                 // Getting the display string for below...
                 final Player player = event.getPlayer();
                 String P = player.getName();
-                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && getConfig().getBoolean("shownick")) {
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && getConfig().getBoolean("shownick",true)) {
                    P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 }
 
         	if (Collections.binarySearch(Disabled, cmd) >= 0) {
         	    event.setCancelled(true);
-		    event.getPlayer().sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    if ( ! getConfig().getBoolean("silent",false)) {
+                        event.getPlayer().sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    }
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(p.isOp() || p.hasPermission("aop.notify")){
+                        if((p.isOp() || p.hasPermission("aop.notify")) & getConfig().getBoolean("notify",true)){
                             p.sendMessage(ChatColor.GRAY + P + " has used /" + cmd);
                         }
                     }

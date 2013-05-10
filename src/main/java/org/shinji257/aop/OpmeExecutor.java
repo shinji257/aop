@@ -21,22 +21,24 @@ public class OpmeExecutor implements CommandExecutor {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
                 String P = player.getName();
-                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick")) {
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick",true)) {
                     P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 }
                 if (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give")) {
                     player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(p.isOp() || p.hasPermission("aop.notify")){
+                        if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
 		    aOP.log.info(player.getName() + " has used /opme (allowed)");
                     player.setOp(true);
                 } else {
-                    sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    if ( ! plugin.getConfig().getBoolean("silent",false)) {
+                        sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                    }
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(p.isOp() || p.hasPermission("aop.notify")){
+                        if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }

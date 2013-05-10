@@ -1,3 +1,5 @@
 opblock: true
 shownick: true
 dropoponleave: true
+notify: true
+silent: false
