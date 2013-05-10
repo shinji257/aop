@@ -28,17 +28,15 @@ public class aOP extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // save default config if it doesn't exist...
+        saveDefaultConfig();
         getCommand("opme").setExecutor(new OpmeExecutor(this));
         getCommand("deopme").setExecutor(new DeopmeExecutor(this));
-        aOP.log.info(this.getDescription().getName() + " has been enabled.");
         // register events
-        getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
-        // create default config...
-        saveDefaultConfig();
-        // ensure existing config contains all relevant vars... set to default if non-exist
-        //Boolean opblock = getConfig().getBoolean("opblock");
-        //Boolean shownick = getConfig().getBoolean("shownick");
-        //Boolean dropoponleave = getConfig().getBoolean("dropoponleave");
+        if (getConfig().getBoolean("opblock",true)) {
+            getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
+        }
+        aOP.log.info(this.getDescription().getName() + " has been enabled.");
     }
 
     // For handling chat events -- block op and deop commands
