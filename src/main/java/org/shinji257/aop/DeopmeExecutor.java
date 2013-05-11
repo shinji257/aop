@@ -11,7 +11,7 @@ public class DeopmeExecutor implements CommandExecutor {
     private aOP plugin;
 
     public DeopmeExecutor(aOP plugin) {
-        this.plugin = plugin;
+        plugin = plugin;
     }
 
     @Override
@@ -25,26 +25,26 @@ public class DeopmeExecutor implements CommandExecutor {
                 }
                 if (player.isOp()) {
                     player.setOp(false);
-                    player.sendMessage("[aOP] " + ChatColor.YELLOW + "You are no longer op!");
+                    player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are no longer op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
                             p.sendMessage(ChatColor.GRAY + P + " has used /deopme");
                         }
                     }
-                    aOP.log.info(player.getName() + " has used /deopme (allowed)");
+                    aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /deopme (allowed)");
                 } else {
                     if ( ! plugin.getConfig().getBoolean("silent",false)) {
-                        sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                        sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                     }
                     for(Player p : Bukkit.getOnlinePlayers()){
                         if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
                             p.sendMessage(ChatColor.GRAY + P + " has used /deopme");
                         }
                     }
-                    aOP.log.info(player.getName() + " has used /deopme (denied)");
+                    aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /deopme (denied)");
                 }
             } else {
-                sender.sendMessage("[aOP] Only Players can execute this command");
+                sender.sendMessage("[" + plugin.getDescription().getName() + "] Only Players can execute this command");
             }
             return true;
         }

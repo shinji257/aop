@@ -44,14 +44,14 @@ public class CommandPreprocessListener implements Listener {
         if (Collections.binarySearch(Disabled, cmd) >= 0) {
             event.setCancelled(true);
             if ( ! plugin.getConfig().getBoolean("silent",false)) {
-                event.getPlayer().sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
+                event.getPlayer().sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
             }
             for(Player p : Bukkit.getOnlinePlayers()){
                 if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
                     p.sendMessage(ChatColor.GRAY + P + " has used /" + cmd);
                 }
             }
-        aOP.log.info(player.getName() + " has used /" + cmd + " (denied)");
+        aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /" + cmd + " (denied)");
         }
     }
 }

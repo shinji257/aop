@@ -9,7 +9,7 @@ public class aOP extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        aOP.log.info(this.getDescription().getName() + " has been disabled.");
+        aOP.log.info(getDescription().getName() + " has been disabled.");
     }
 
     @Override
@@ -23,6 +23,6 @@ public class aOP extends JavaPlugin {
             getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
         }
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
-        aOP.log.info(this.getDescription().getName() + " has been enabled.");
+        aOP.log.info(getDescription().getName() + " has been enabled.");
     }
 }
