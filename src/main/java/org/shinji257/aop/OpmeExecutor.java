@@ -6,7 +6,6 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
 
 public class OpmeExecutor implements CommandExecutor {
     private aOP plugin;
@@ -31,7 +30,7 @@ public class OpmeExecutor implements CommandExecutor {
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
-		    aOP.log.info(player.getName() + " has used /opme (allowed)");
+                    aOP.log.info(player.getName() + " has used /opme (allowed)");
                     player.setOp(true);
                 } else {
                     if ( ! plugin.getConfig().getBoolean("silent",false)) {
@@ -42,7 +41,7 @@ public class OpmeExecutor implements CommandExecutor {
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
-       		    aOP.log.info(player.getName() + " has used /opme (denied)");
+                    aOP.log.info(player.getName() + " has used /opme (denied)");
                 }
             } else {
                 sender.sendMessage("[aOP] Only Players can execute this command");

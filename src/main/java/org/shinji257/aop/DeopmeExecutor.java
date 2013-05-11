@@ -31,7 +31,7 @@ public class DeopmeExecutor implements CommandExecutor {
                             p.sendMessage(ChatColor.GRAY + P + " has used /deopme");
                         }
                     }
-		    aOP.log.info(player.getName() + " has used /deopme (allowed)");
+                    aOP.log.info(player.getName() + " has used /deopme (allowed)");
                 } else {
                     if ( ! plugin.getConfig().getBoolean("silent",false)) {
                         sender.sendMessage("[aOP] " + ChatColor.RED + "Access Denied.");
@@ -41,7 +41,7 @@ public class DeopmeExecutor implements CommandExecutor {
                             p.sendMessage(ChatColor.GRAY + P + " has used /deopme");
                         }
                     }
-       		    aOP.log.info(player.getName() + " has used /deopme (denied)");
+                    aOP.log.info(player.getName() + " has used /deopme (denied)");
                 }
             } else {
                 sender.sendMessage("[aOP] Only Players can execute this command");
