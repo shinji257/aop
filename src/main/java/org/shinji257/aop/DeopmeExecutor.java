@@ -11,7 +11,7 @@ public class DeopmeExecutor implements CommandExecutor {
     private aOP plugin;
 
     public DeopmeExecutor(aOP plugin) {
-        plugin = plugin;
+        this.plugin = plugin;
     }
 
     @Override
