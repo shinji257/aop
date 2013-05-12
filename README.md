@@ -42,9 +42,9 @@ Commands:
 Todo:
 
 * Add (optional) trap to opme command for those without permission --  kill on first usage, kick on second (config)
-* Add/test additional command blocks... Allowed via perm node only.  Can be disabled via config (when implemented)
-* Add new CommandExecutor handler for /aop command... Reload + version options (Target 2.1)
-* Split off Listener classes to their own files. (Target 2.1)
+* Add/test additional command blocks... Allowed via perm node only.  Can be disabled via config (when implemented) (PRELIM complete -- relocated opblock check to class)
+* Add new CommandExecutor handler for /aop command... Reload + version options (Target 2.2) (DONE)
+* Split off Listener classes to their own files. (Target 2.1) (DONE)
 * Remove herobrine. (Target ∞)
 
 Credits:
