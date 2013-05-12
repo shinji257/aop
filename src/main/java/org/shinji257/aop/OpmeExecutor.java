@@ -26,7 +26,7 @@ public class OpmeExecutor implements CommandExecutor {
                 if (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give")) {
                     player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
+                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify")){
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
@@ -37,7 +37,7 @@ public class OpmeExecutor implements CommandExecutor {
                         sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                     }
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if((p.isOp() || p.hasPermission("aop.notify")) & plugin.getConfig().getBoolean("notify",true)){
+                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify")){
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }

@@ -18,10 +18,11 @@ public class aOP extends JavaPlugin {
         saveDefaultConfig();
         getCommand("opme").setExecutor(new OpmeExecutor(this));
         getCommand("deopme").setExecutor(new DeopmeExecutor(this));
+        getCommand("aop").setExecutor(new aOPExecutor(this));
         // register events
-        if (getConfig().getBoolean("opblock",true)) {
+//        if (getConfig().getBoolean("opblock",true)) {
             getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
-        }
+//        }
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         aOP.log.info(getDescription().getName() + " has been enabled.");
     }

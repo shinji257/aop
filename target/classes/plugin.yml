@@ -1,16 +1,17 @@
 name: aOP
 main: org.shinji257.aop.aOP
-version: 2.1
+version: 2.2
 
 commands:
     opme:
         description: Allows players to give OP status to themself.
-        usage: |
-            /<command> - enable OP status on yourself.
+        usage: /<command> - enable OP status on yourself.
     deopme:
         description: Allows players to remove OP status from themself.
-        usage: |
-            /<command> - disable OP status on yourself.
+        usage: /<command> - disable OP status on yourself.
+    aop:
+        description: Plugin management
+        usage: /<command> - Plugin management
 
 permissions:
     aop.use:
@@ -18,7 +19,10 @@ permissions:
         default: op
     aop.notify:
         description: Gives ability to recieve notification when a monitored command is used
-        default: false
+        default: op
+    aop.reload:
+        description: Allows reloading the plugin configuration
+        default: op
     aop.bypass.opdrop:
         description: Bypass the automatic op drop on quit
         default: false
