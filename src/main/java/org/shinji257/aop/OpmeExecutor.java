@@ -33,6 +33,11 @@ public class OpmeExecutor implements CommandExecutor {
                     aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /opme (allowed)");
                     player.setOp(true);
                 } else {
+                    if ( plugin.getConfig().getBoolean("opmetrap",false)) {
+                        player.kickPlayer("You are not entitled to op status.");
+                        Bukkit.broadcastMessage(player.getDisplayName() + ChatColor.RESET + " has been kicked: You are not entitled to op status.");
+                        aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has been kicked for trying to use /opme");
+                    }
                     if ( ! plugin.getConfig().getBoolean("silent",false)) {
                         sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                     }

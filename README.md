@@ -45,6 +45,12 @@ Todo:
 * Add/test additional command blocks... Allowed via perm node only.  Can be disabled via config (when implemented) (PRELIM complete -- relocated opblock check to class)
 * Add new CommandExecutor handler for /aop command... Reload + version options (Target 2.2) (DONE)
 * Split off Listener classes to their own files. (Target 2.1) (DONE)
+* Add in-game options to change config on the fly w/ node (maybe aop.config?) (Target 3.0)
+* Add ability to change in-game chat strings for aOP (not notify... Target 3.0?)
+* Add updateConfig() function to check for missing config lines and add them.  Will be updated when new config vars are added. (Target 3.0)
+* Add additional blocks on op/deop usage... Will need to case test to see if op/deop is already blocked via command blocks and other plugins
+  (eg  Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "command");) (Target 3.0)
+* Maybe filter setOp()? Is that even possible? (Target 3.0?)
 * Remove herobrine. (Target ∞)
 
 Credits:
