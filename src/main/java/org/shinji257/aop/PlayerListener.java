@@ -18,7 +18,7 @@ public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerLogin (final PlayerLoginEvent event) {
         final Player player = event.getPlayer();
-        if ((player.isOp() & plugin.getConfig().getBoolean("opdrop",true)) && ( ! player.hasPermission("aop.bypass.opdrop"))) {
+        if ((player.isOp() & plugin.getConfig().getBoolean("opdrop")) && ( ! player.hasPermission("aop.bypass.opdrop"))) {
             player.setOp(false);
             aOP.log.info("[" + plugin.getDescription().getName() + "] Dropped op status for " + player.getName() + " at login");
         }

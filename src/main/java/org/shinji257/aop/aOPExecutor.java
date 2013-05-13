@@ -20,18 +20,15 @@ public class aOPExecutor implements CommandExecutor {
                 if (sender.hasPermission("aop.reload")) {
                     plugin.reloadConfig();
                     sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "Configuration Reloaded.");
-                } else {
+                } else
                     sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
-                }
             } else {
                 if (sender.hasPermission("aop.use")) {
                    sender.sendMessage(plugin.getDescription().getName() + " " + plugin.getDescription().getVersion());
-                   if (sender.hasPermission("aop.reload")) {
+                   if (sender.hasPermission("aop.reload"))
                        sender.sendMessage("Available parameters: reload");
-                   }
-               } else {
+               } else
                    sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
-               }
             }
             return true;
         }

@@ -20,32 +20,25 @@ public class DeopmeExecutor implements CommandExecutor {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
                 String P = player.getName();
-                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick",true)) {
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick"))
                     P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
-                }
                 if (player.isOp()) {
                     player.setOp(false);
                     player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are no longer op!");
-                    for(Player p : Bukkit.getOnlinePlayers()){
-                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify") && (player.getName() != p.getName())){
+                    for(Player p : Bukkit.getOnlinePlayers())
+                        if(plugin.getConfig().getBoolean("notify") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
                             p.sendMessage(ChatColor.GRAY + P + " has used /deopme");
-                        }
-                    }
                     aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /deopme (allowed)");
                 } else {
-                    if ( ! plugin.getConfig().getBoolean("silent",false)) {
+                    if ( ! plugin.getConfig().getBoolean("silent"))
                         sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
-                    }
-                    for(Player p : Bukkit.getOnlinePlayers()){
-                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify") && (player.getName() != p.getName())){
+                    for(Player p : Bukkit.getOnlinePlayers())
+                        if(plugin.getConfig().getBoolean("notify") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
                             p.sendMessage(ChatColor.GRAY + P + " has used /deopme");
-                        }
-                    }
                     aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /deopme (denied)");
                 }
-            } else {
+            } else
                 sender.sendMessage("[" + plugin.getDescription().getName() + "] Only Players can execute this command");
-            }
             return true;
         }
         return false;
