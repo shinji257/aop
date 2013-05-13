@@ -50,6 +50,7 @@ Todo:
 * Add updateConfig() function to check for missing config lines and add them.  Will be updated when new config vars are added. (Target 3.0)
 * Add additional blocks on op/deop usage... Will need to case test to see if op/deop is already blocked via command blocks and other plugins
   (eg  Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "command");) (Target 3.0)
+  NOTE: command blocks should be a non-issue.  op/deop already blocked in vanilla and need op access already to get them.
 * Maybe filter setOp()? Is that even possible? (Target 3.0?)
 * Remove herobrine. (Target ∞)
 

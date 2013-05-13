@@ -48,7 +48,7 @@ public class CommandPreprocessListener implements Listener {
                     event.getPlayer().sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                 }
                 for(Player p : Bukkit.getOnlinePlayers()){
-                    if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify")){
+                    if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify") && (player.getName() != p.getName())){
                         p.sendMessage(ChatColor.GRAY + P + " has used /" + cmd);
                     }
                 }

@@ -24,25 +24,25 @@ public class OpmeExecutor implements CommandExecutor {
                     P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 }
                 if (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give")) {
+                    player.setOp(true);
                     player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify")){
+                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify") && (player.getName() != p.getName())){
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
                     aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /opme (allowed)");
-                    player.setOp(true);
                 } else {
-                    if ( plugin.getConfig().getBoolean("opmetrap",false)) {
-                        player.kickPlayer("You are not entitled to op status.");
-                        Bukkit.broadcastMessage(player.getDisplayName() + ChatColor.RESET + " has been kicked: You are not entitled to op status.");
-                        aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has been kicked for trying to use /opme");
-                    }
+//                    if ( plugin.getConfig().getBoolean("opmetrap",false)) {
+//                        player.kickPlayer("You are not entitled to op status.");
+//                        Bukkit.broadcastMessage(player.getDisplayName() + ChatColor.RESET + " has been kicked: You are not entitled to op status.");
+//                        aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has been kicked for trying to use /opme");
+//                    }
                     if ( ! plugin.getConfig().getBoolean("silent",false)) {
                         sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                     }
                     for(Player p : Bukkit.getOnlinePlayers()){
-                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify")){
+                        if(plugin.getConfig().getBoolean("notify",true) && p.hasPermission("aop.notify") && (player.getName() != p.getName())){
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                         }
                     }
