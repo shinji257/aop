@@ -1,6 +1,6 @@
 name: aOP
 main: org.shinji257.aop.aOP
-version: 2.2
+version: 2.3
 softdepend: [Vault]
 
 commands:

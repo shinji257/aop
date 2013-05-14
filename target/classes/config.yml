@@ -1,5 +1,22 @@
 opblock: true
-shownick: true
 opdrop: true
-notify: true
+notify:
+  enabled: true
+  shownick: true
 silent: false
+opmetrap:
+  enabled: false
+  teleport:
+    enabled: false
+    posx: 0
+    posy: -200
+    posz: 0
+  godmode: true
+  blockchat: 2
+  eco:
+    enabled: false
+    cost: 50
+  explosion: false
+  lightning: false
+  kill: false
+  kick: false

@@ -38,14 +38,14 @@ public class CommandPreprocessListener implements Listener {
             // Getting the display string for below...
             final Player player = event.getPlayer();
             String P = player.getName();
-            if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick"))
+            if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("notify.shownick"))
                 P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
             if (Collections.binarySearch(Disabled, cmd) >= 0) {
                 event.setCancelled(true);
                 if ( ! plugin.getConfig().getBoolean("silent"))
                     event.getPlayer().sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                 for(Player p : Bukkit.getOnlinePlayers())
-                    if(plugin.getConfig().getBoolean("notify") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
+                    if(plugin.getConfig().getBoolean("notify.enabled") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
                         p.sendMessage(ChatColor.GRAY + P + " has used /" + cmd);
             aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /" + cmd + " (denied)");
             }

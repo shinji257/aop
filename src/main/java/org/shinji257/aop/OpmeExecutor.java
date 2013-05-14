@@ -20,13 +20,13 @@ public class OpmeExecutor implements CommandExecutor {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
                 String P = player.getName();
-                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("shownick"))
+                if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("notify.shownick"))
                     P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 if (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give")) {
                     player.setOp(true);
                     player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are now op!");
                     for(Player p : Bukkit.getOnlinePlayers())
-                        if(plugin.getConfig().getBoolean("notify") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
+                        if(plugin.getConfig().getBoolean("notify.enabled") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                     aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /opme (allowed)");
                 } else {
@@ -38,7 +38,7 @@ public class OpmeExecutor implements CommandExecutor {
                     if ( ! plugin.getConfig().getBoolean("silent"))
                         sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                     for(Player p : Bukkit.getOnlinePlayers())
-                        if(plugin.getConfig().getBoolean("notify") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
+                        if(plugin.getConfig().getBoolean("notify.enabled") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
                             p.sendMessage(ChatColor.GRAY + P + " has used /opme");
                     aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /opme (denied)");
                 }
