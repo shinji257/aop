@@ -1,5 +1,7 @@
 name: aOP
 main: org.shinji257.aop.aOP
+author: shinji257
+website: http://dev.bukkit.org/server-mods/aop/
 version: 2.3
 softdepend: [Vault]
 

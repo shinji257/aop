@@ -13,15 +13,18 @@ There are plans for more functions eventually so hopefully I will be
 able to implement them later on.
 
 Functions:
-* Add /opme and /deopme
-* Uses permissions to control /opme usage
-* Catch and block /op and /deop usage even for ops
-* Allow /op and /deop to be used in console
-* Alerts ops of usage for /op, /deop, /opme, and /deopme
+
+* Add opme and deopme
+* Uses permissions to control opme usage
+* Catch and block op and deop usage even for ops
+* Allow op and deop to be used in console
+* Alerts ops of usage for op, deop, opme, and deopme
 * Alerts console as well
 
 (added in 2.0)
+
 Configurable ability to ...
+
 * Silence deny message sent to player
 * Enable/disable notifications in chat
 * Enable/disable op/deop command block
@@ -29,15 +32,18 @@ Configurable ability to ...
 * Automatically drop op on quit
 
 Permissions
-- aop.use (Allow usage of /opme command)
-- aop.notify (Get notified when someone uses op,deop,etc)
+
+* aop.use (Allow usage of opme command)
+* aop.notify (Get notified when someone uses op,deop,etc)
 
 (added in 2.0)
-- aop.bypass.opdrop (Bypass automatic drop of op rights on quit)
+
+* aop.bypass.opdrop (Bypass automatic drop of op rights on quit)
 
 Commands:
-- /opme (Ops the calling user -- Currently permissions only)
-- /deopme (Deops the calling user -- Ops only)
+
+* /opme (Ops the calling user -- Currently permissions only)
+* /deopme (Deops the calling user -- Ops only)
 
 Todo:
 
