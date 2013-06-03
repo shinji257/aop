@@ -28,4 +28,4 @@ permissions:
         default: op
     aop.bypass.opdrop:
         description: Bypass the automatic op drop on quit
-        default: false
+        default: false        
