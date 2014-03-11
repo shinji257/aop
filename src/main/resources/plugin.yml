@@ -1,8 +1,8 @@
-name: aOP
-main: org.shinji257.aop.aOP
+name: ${project.name}
+main: ${project.groupId}.${project.artifactId}
 author: shinji257
 website: http://dev.bukkit.org/server-mods/aop/
-version: 2.3
+version: ${project.version} (${timestamp})
 softdepend: [Vault]
 
 commands:

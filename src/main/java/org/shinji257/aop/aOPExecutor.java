@@ -30,10 +30,16 @@ public class aOPExecutor implements CommandExecutor {
                 if (sender.isOp()) {
                     // http://stackoverflow.com/questions/1518213/read-java-jvm-startup-parameters-eg-xmx
                     RuntimeMXBean bean = ManagementFactory.getRuntimeMXBean();
-                    List<String> aList = bean.getInputArguments();
-                    for (int i = 0; i < aList.size(); i++) {
-                        sender.sendMessage(aList.get(i));
-                    }
+                    List<String> Params = bean.getInputArguments();
+//                    for (int i = 0; i < Params.size(); i++) {
+//                        sender.sendMessage(Params.get(i));
+//                    }
+                   StringBuilder Paramslist = new StringBuilder();
+                   for (Object s : Params) {
+                       Paramslist.append(s.toString());
+                       Paramslist.append(" ");
+                   }
+                   sender.sendMessage("Java Params: " + Paramslist);
                 }
             } else {
                 if (sender.hasPermission("aop.use")) {
