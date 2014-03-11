@@ -51,6 +51,7 @@ public class aOP extends JavaPlugin {
         if (!getConfig().contains("opmetrap.enabled")) getConfig().set("opmetrap.enabled", false);
         // New stuff for opme trap above... opme is still being worked on ofc.
         // Vault was added for possible functionality for opme trap...
+/*
         if (!getConfig().contains("opmetrap.teleport.enabled")) getConfig().set("opmetrap.teleport.enabled", false);
         if (!getConfig().contains("opmetrap.teleport.posx")) getConfig().set("opmetrap.teleport.posx", 0);
         if (!getConfig().contains("opmetrap.teleport.posy")) getConfig().set("opmetrap.teleport.posy", -200);
@@ -63,7 +64,7 @@ public class aOP extends JavaPlugin {
         if (!getConfig().contains("opmetrap.lightning")) getConfig().set("opmetrap.lightning", false);
         if (!getConfig().contains("opmetrap.kill")) getConfig().set("opmetrap.kill", false);
         if (!getConfig().contains("opmetrap.kick")) getConfig().set("opmetrap.kick", false);
-
+*/
 
         // Save default values to config.yml
         saveConfig();
