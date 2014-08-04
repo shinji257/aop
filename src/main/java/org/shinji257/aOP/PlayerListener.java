@@ -1,4 +1,4 @@
-package org.shinji257.aop;
+package org.shinji257.aOP;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
