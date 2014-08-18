@@ -5,6 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Bukkit;
 
@@ -16,11 +17,13 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onPlayerLogin (final PlayerLoginEvent event) {
+    public void onJoin (final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
-        if ((player.isOp() & plugin.getConfig().getBoolean("op.drop")) && ( ! player.hasPermission("aop.bypass.opdrop"))) {
-            player.setOp(false);
-            aOP.log.info("[" + plugin.getDescription().getName() + "] Dropped op status for " + player.getName() + " at login");
+        if (player.isOp() && plugin.getConfig().getBoolean("op.drop")) {
+            if ( ! player.hasPermission("aop.bypass.opdrop")) {
+                player.setOp(false);
+                aOP.log.info("[" + plugin.getDescription().getName() + "] Dropped op status for " + player.getName() + " at join");
+            }
         }
     }
 }

@@ -40,7 +40,9 @@ public class DeopmeExecutor implements CommandExecutor {
             } else
                 sender.sendMessage("[" + plugin.getDescription().getName() + "] Only Players can execute this command");
             return true;
+        } else {
+            sender.sendMessage("[" + plugin.getDescription().getName() + "] Command has been disabled.");
+            return true;
         }
-        return false;
     }
 }
