@@ -8,13 +8,13 @@ softdepend: [Vault]
 commands:
     opme:
         description: Allows players to give OP status to themself.
-        usage: /<command> - enable OP status on yourself.
+        usage: /<command>
     deopme:
         description: Allows players to remove OP status from themself.
-        usage: /<command> - disable OP status on yourself.
+        usage: /<command>
     aop:
         description: Plugin management
-        usage: /<command> - Plugin management
+        usage: /<command>
 
 permissions:
     aop.use:

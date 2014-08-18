@@ -1,5 +1,7 @@
-opblock: true
-opdrop: true
+op:
+  block: true
+  drop: true
+  intercept: false
 notify:
   enabled: true
   shownick: true
