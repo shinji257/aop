@@ -3,7 +3,6 @@ main: ${project.groupId}.${project.artifactId}
 author: shinji257
 website: http://dev.bukkit.org/server-mods/aop/
 version: ${project.version} (${timestamp})
-softdepend: [Vault]
 
 commands:
     opme:
@@ -27,5 +26,8 @@ permissions:
         description: Allows reloading the plugin configuration
         default: op
     aop.bypass.opdrop:
-        description: Bypass the automatic op drop on quit
+        description: Bypass the automatic op drop on quit (when enabled)
         default: false        
+    aop.bypass.intercept:
+        description: Bypass the intercept check for op/deop (when enabled)
+        default: false

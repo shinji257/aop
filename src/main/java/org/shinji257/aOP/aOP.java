@@ -18,8 +18,10 @@ public class aOP extends JavaPlugin {
         saveDefaultConfig();
         // update config... add missing options. :p
         updateConfig();
-        getCommand("opme").setExecutor(new OpmeExecutor(this));
-        getCommand("deopme").setExecutor(new DeopmeExecutor(this));
+        if (getConfig().getBoolean("op.me")) {
+            getCommand("opme").setExecutor(new OpmeExecutor(this));
+            getCommand("deopme").setExecutor(new DeopmeExecutor(this));
+        }
         getCommand("aop").setExecutor(new aOPExecutor(this));
         // register events
         getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
@@ -46,6 +48,7 @@ public class aOP extends JavaPlugin {
                 getConfig().set("op.drop", true);
         }
         if (!getConfig().contains("op.intercept")) getConfig().set("op.intercept", false);
+        if (!getConfig().contains("op.me")) getConfig().set("op.me", true);
         if (!getConfig().contains("notify.enabled")) {
             if (getConfig().contains("notify")) {
                 getConfig().set("notify.enabled", getConfig().getBoolean("notify"));
