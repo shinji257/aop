@@ -21,19 +21,19 @@ public class aOP extends JavaPlugin {
         getCommand("opme").setExecutor(new OpmeExecutor(this));
         getCommand("deopme").setExecutor(new DeopmeExecutor(this));
         getCommand("aop").setExecutor(new aOPExecutor(this));
-        // Heh... for op.intercept.  We are going to check and make sure op.block is NOT set before using these.  WARN if they are.
+        // Heh... for op.intercept.  We are going to check and make sure op.block is NOT set before using these.  Warn if they are.
         // :p
-        if (getConfig().getboolean("op.intercept"))
-            if (!getConfig().getboolean("op.block")) {
+        if (getConfig().getBoolean("op.intercept")) {
+            if (!getConfig().getBoolean("op.block")) {
                 getCommand("op").setExecutor(new OpExecutor(this));
                 //getCommand("deop").setExecutor(new DeopExecutor(this));
             } else {
-                aOP.log.WARN("[" + plugin.getDescription().getName() + "] " + "/op intercept and block are both enabled!  Can only use one.  Defaulting to block.");
-                aOP.log.WARN("[" + plugin.getDescription().getName() + "] " + "op/deop Executors were not loaded!");
+                aOP.log.warning("[" + getDescription().getName() + "] " + "/op intercept and block are both enabled!  Can only use one.  Defaulting to block.");
+                aOP.log.warning("[" + getDescription().getName() + "] " + "op/deop Executors were not loaded!");
             }
         }
         // register events
-        if (getConfig().getboolean("op.block"))
+        if (getConfig().getBoolean("op.block"))
             getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         aOP.log.info(getDescription().getName() + " has been enabled.");

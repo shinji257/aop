@@ -7,10 +7,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.Bukkit;
 
-public class OpmeExecutor implements CommandExecutor {
+public class OpExecutor implements CommandExecutor {
     private aOP plugin;
 
-    public OpmeExecutor(aOP plugin) {
+    public OpExecutor(aOP plugin) {
         this.plugin = plugin;
     }
 
