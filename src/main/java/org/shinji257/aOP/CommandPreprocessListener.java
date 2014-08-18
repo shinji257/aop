@@ -13,27 +13,26 @@ import org.bukkit.Bukkit;
 
 public class CommandPreprocessListener implements Listener {
     public aOP plugin;
-    
+
     public CommandPreprocessListener(aOP instance) {
         plugin = instance;
     }
 
-    public List<String> Disabled;
+    public List<String> Monitored;
+    String target = " ";
 
     @EventHandler(priority=EventPriority.MONITOR)
     public void onPlayerCommandPreprocess(PlayerCommandPreprocessEvent event) {
+
+        // Let's break this up now.
+        String[] split = event.getMessage().split(" ");
+        if (split.length < 1) return;
+        String cmd = split[0].trim().substring(1).toLowerCase();
+
         // Getting the player for below...
         final Player player = event.getPlayer();
         String P = player.getName();
 
-//        String[] split = event.getMessage().split(" ");
-//        if (split.length < 1) return;
-//        String cmd = split[0].trim().substring(1).toLowerCase();
-
-        String rawMessage = event.getMessage();
-        String cmd = rawMessage.substring(1).split(" ", 1).toLowerCase();
-        String[] args = rawMessage().substring(label.size()+1).split(" ").toLowerCase();
-        
         // Let's build our array. :)
         Monitored = new ArrayList<String>();
 
@@ -41,7 +40,6 @@ public class CommandPreprocessListener implements Listener {
         Monitored.add("deop");
         Monitored.add("op");
 
-        
         if (plugin.getConfig().getBoolean("op.block")) {
             if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("notify.shownick"))
                 P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
@@ -56,12 +54,18 @@ public class CommandPreprocessListener implements Listener {
             }
         }
         if (plugin.getConfig().getBoolean("op.intercept")) {
-            if (! plugin.getConfig().getConfig("op.block")) {
+            if (! plugin.getConfig().getBoolean("op.block")) {
+                if (event.getMessage().split(" ").length >= 2) {
+                    target = split[1].trim().substring(0).toLowerCase();
+                } else {
+                    target = "empty";
+                }
                 if ( ! (P.equals(ChatColor.stripColor(player.getDisplayName()))) && plugin.getConfig().getBoolean("notify.shownick"))
                     P = P + " ( " + player.getDisplayName() + ChatColor.GRAY + " )";
                 if (Collections.binarySearch(Monitored, cmd) >= 0) {
-                    if (player.hasPermission("aop.use") {
-                        if (args.length >= 1) {
+                    event.setCancelled(true);
+                    if (cmd.equals("op") && (player.hasPermission("aop.use") || player.hasPermission("bukkit.command.op.give"))) {
+                        if (target.equals(P)) {
                             player.setOp(true);
                             player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are now op!");
                             for(Player p : Bukkit.getOnlinePlayers())
@@ -75,14 +79,30 @@ public class CommandPreprocessListener implements Listener {
                                     p.sendMessage(ChatColor.GRAY + P + " has used /op");
                             aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /op (allowed)");
                         }
+                    } else if (cmd.equals("deop") && (player.isOp())) {
+                        if (target.equals(P)) {
+                            player.setOp(false);
+                            player.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.YELLOW + "You are no longer op!");
+                            for(Player p : Bukkit.getOnlinePlayers())
+                                if(plugin.getConfig().getBoolean("notify.enabled") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
+                                    p.sendMessage(ChatColor.GRAY + P + " has used /deop");
+                            aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /deop (allowed)");
+                        } else {
+                            player.sendMessage(ChatColor.RED + "Usage: /deop <player>");
+                            for(Player p : Bukkit.getOnlinePlayers())
+                                if(plugin.getConfig().getBoolean("notify.enabled") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
+                                    p.sendMessage(ChatColor.GRAY + P + " has used /deop");
+                            aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /deop (allowed)");
+                        }
                     } else {
                         if ( ! plugin.getConfig().getBoolean("silent"))
-                            sender.sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
+                            event.getPlayer().sendMessage("[" + plugin.getDescription().getName() + "] " + ChatColor.RED + "Access Denied.");
                         for(Player p : Bukkit.getOnlinePlayers())
                             if(plugin.getConfig().getBoolean("notify.enabled") && p.hasPermission("aop.notify") && (player.getName() != p.getName()))
-                                p.sendMessage(ChatColor.GRAY + P + " has used /op");
-                        aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /op (denied)");
+                                p.sendMessage(ChatColor.GRAY + P + " has used /" + cmd);
+                        aOP.log.info("[" + plugin.getDescription().getName() + "] " + player.getName() + " has used /" + cmd + " (denied)");
                     }
+
                 }
             }
         }
