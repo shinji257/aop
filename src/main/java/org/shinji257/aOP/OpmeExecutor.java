@@ -16,7 +16,7 @@ public class OpmeExecutor implements CommandExecutor {
 
     @Override
     public boolean onCommand(final CommandSender sender, final Command command, final String label, final String[] args) {
-        if (command.getName().equalsIgnoreCase("opme")) {
+        if (command.getName().equalsIgnoreCase("opme") && plugin.getConfig().getBoolean("op.me")) {
             if (sender instanceof Player) {
                 final Player player = (Player) sender;
                 String P = player.getName();

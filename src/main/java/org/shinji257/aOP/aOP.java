@@ -18,10 +18,8 @@ public class aOP extends JavaPlugin {
         saveDefaultConfig();
         // update config... add missing options. :p
         updateConfig();
-        if (getConfig().getBoolean("op.me")) {
-            getCommand("opme").setExecutor(new OpmeExecutor(this));
-            getCommand("deopme").setExecutor(new DeopmeExecutor(this));
-        }
+        getCommand("opme").setExecutor(new OpmeExecutor(this));
+        getCommand("deopme").setExecutor(new DeopmeExecutor(this));
         getCommand("aop").setExecutor(new aOPExecutor(this));
         // register events
         getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
