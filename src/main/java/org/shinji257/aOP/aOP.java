@@ -21,8 +21,20 @@ public class aOP extends JavaPlugin {
         getCommand("opme").setExecutor(new OpmeExecutor(this));
         getCommand("deopme").setExecutor(new DeopmeExecutor(this));
         getCommand("aop").setExecutor(new aOPExecutor(this));
+        // Heh... for op.intercept.  We are going to check and make sure op.block is NOT set before using these.  WARN if they are.
+        // :p
+        if (getConfig().getboolean("op.intercept"))
+            if (!getConfig().getboolean("op.block")) {
+                getCommand("op").setExecutor(new OpExecutor(this));
+                //getCommand("deop").setExecutor(new DeopExecutor(this));
+            } else {
+                aOP.log.WARN("[" + plugin.getDescription().getName() + "] " + "/op intercept and block are both enabled!  Can only use one.  Defaulting to block.");
+                aOP.log.WARN("[" + plugin.getDescription().getName() + "] " + "op/deop Executors were not loaded!");
+            }
+        }
         // register events
-        getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
+        if (getConfig().getboolean("op.block"))
+            getServer().getPluginManager().registerEvents(new CommandPreprocessListener(this), this);
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         aOP.log.info(getDescription().getName() + " has been enabled.");
     }
@@ -31,8 +43,21 @@ public class aOP extends JavaPlugin {
         getConfig().options().copyDefaults(true);
 
         // This is the default configuration -- includes config migrations... :p
-        if (!getConfig().contains("opblock")) getConfig().set("opblock", true);
-        if (!getConfig().contains("opdrop")) getConfig().set("opdrop", true);
+        if (!getConfig().contains("op.block")) {
+            if (getConfig().contains("opblock")) {
+                getConfig().set("op.block", getConfig().getBoolean("opblock"));
+                getConfig().set("opblock", null);
+            } else
+                getConfig().set("op.block", true);
+        }
+        if (!getConfig().contains("op.drop")) {
+            if (getConfig().contains("opdrop")) {
+                getConfig().set("op.drop", getConfig().getBoolean("opdrop"));
+                getConfig().set("opdrop", null);
+            } else
+                getConfig().set("op.drop", true);
+        }
+        if (!getConfig().contains("op.intercept")) getConfig().set("op.intercept", false);
         if (!getConfig().contains("notify.enabled")) {
             if (getConfig().contains("notify")) {
                 getConfig().set("notify.enabled", getConfig().getBoolean("notify"));
