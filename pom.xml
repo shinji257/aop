@@ -27,19 +27,6 @@
     </resources>
   </build>
 
-  <distributionManagement>
-    <repository>
-      <id>repobo-rel</id>
-      <name>repo.bukkit.org Releases</name>
-      <url>http://repo.bukkit.org/content/repositories/releases/</url>
-    </repository>
-    <snapshotRepository>
-      <id>repobo-snap</id>
-      <name>repo.bukkit.org Snapshots</name>
-      <url>http://repo.bukkit.org/content/repositories/snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <repositories>
     <repository>
       <id>repobo-snap</id>
@@ -53,7 +40,7 @@
       <artifactId>bukkit</artifactId>
       <version>1.7.2-R0.3</version>
       <type>jar</type>
-      <scope>compile</scope>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 </project>
